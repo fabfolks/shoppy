@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uuid:</strong>
+  <%= @stock.uuid %>
+</p>
+
+<p>
+  <strong>Sku code:</strong>
+  <%= @stock.sku_code %>
+</p>
+
+<p>
+  <strong>Sku description:</strong>
+  <%= @stock.sku_description %>
+</p>
+
+<p>
+  <strong>Batch no:</strong>
+  <%= @stock.batch_no %>
+</p>
+
+<p>
+  <strong>Manufactured data:</strong>
+  <%= @stock.manufactured_data %>
+</p>
+
+<p>
+  <strong>Expiry date:</strong>
+  <%= @stock.expiry_date %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @stock.quantity %>
+</p>
+
+<p>
+  <strong>Unit of measure:</strong>
+  <%= @stock.unit_of_measure %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>
