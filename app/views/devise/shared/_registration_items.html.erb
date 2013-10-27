@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Edit registration', edit_registration_path(resource_name)) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Register', new_registration_path(resource_name))  %>
+  </li>
+<% end %>
