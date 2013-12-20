@@ -4,12 +4,38 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
+user1:
   id: 1
   email: user1@test.eu
   encrypted_password: abcdef1
+  role_id: 1
 
-two:
+user2:
   id: 2
   email: user2@test.eu
   encrypted_password: abcdef1
+  role_id: 1
+
+seller1:
+  id: 3
+  email: seller1@test.eu
+  encrypted_password: abcdef1
+  role_id: 2
+
+seller22:
+  id: 4
+  email: seller2@test.eu
+  encrypted_password: abcdef1
+  role_id: 2
+
+admin1:
+  id: 5
+  email: admin1@test.eu
+  encrypted_password: abcdef1
+  role_id: 3
+
+admin2:
+  id: 6
+  email: admin2@test.eu
+  encrypted_password: abcdef1
+  role_id: 3

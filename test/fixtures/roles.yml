@@ -1,0 +1,20 @@
+user:
+  id: 1
+  name: user
+  description: user
+  title: user
+  the_role: user
+
+seller:
+  id: 2
+  name: seller
+  description: seller 
+  title: seller
+  the_role: seller
+
+admin:
+  id: 3
+  name: admin
+  description: admin
+  title: admin
+  the_role: admin

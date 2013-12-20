@@ -17,7 +17,7 @@ class StocksControllerTest < ActionController::TestCase
   end
 
   test "logged in user should create stock" do
-    sign_in users(:one)
+    sign_in users(:user1)
     assert_difference('Stock.count') do
       post :create, stock: { batch_no: @stock.batch_no, expiry_date: @stock.expiry_date, manufactured_data: @stock.manufactured_data, quantity: @stock.quantity, sku_code: @stock.sku_code, sku_description: @stock.sku_description, unit_of_measure: @stock.unit_of_measure, uuid: @stock.uuid }
     end
@@ -35,7 +35,7 @@ class StocksControllerTest < ActionController::TestCase
   end
 
   test "logged in user should get edit" do
-    sign_in users(:one)
+    sign_in users(:user1)
     get :edit, id: @stock
     assert_response :success
   end
@@ -45,7 +45,7 @@ class StocksControllerTest < ActionController::TestCase
   end
 
   test "logged in user should update stock" do
-    sign_in users(:one)
+    sign_in users(:user1)
     patch :update, id: @stock, stock: { batch_no: @stock.batch_no, expiry_date: @stock.expiry_date, manufactured_data: @stock.manufactured_data, quantity: @stock.quantity, sku_code: @stock.sku_code, sku_description: @stock.sku_description, unit_of_measure: @stock.unit_of_measure, uuid: @stock.uuid }
     assert_redirected_to stock_path(assigns(:stock))
   end
@@ -55,7 +55,7 @@ class StocksControllerTest < ActionController::TestCase
   end
 
   test "logged in user should destroy stock" do
-    sign_in users(:one)
+    sign_in users(:user1)
     assert_difference('Stock.count', -1) do
       delete :destroy, id: @stock
     end
