@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :role_required, except: [:index, :show]
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
   # GET /stocks

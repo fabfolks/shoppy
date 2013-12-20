@@ -3,18 +3,18 @@ user:
   name: user
   description: user
   title: user
-  the_role: user
+  the_role: {"stocks": {"index": true, "show": true, "new": false, "edit": false, "update": false, "destroy": false}}
 
 seller:
   id: 2
   name: seller
-  description: seller 
+  description: seller
   title: seller
-  the_role: seller
+  the_role: {"stocks": {"index": true, "show": true, "new": true, "edit": true, "update": true, "destroy": true}}
 
 admin:
   id: 3
   name: admin
   description: admin
   title: admin
-  the_role: admin
+  the_role: {"stocks": {"index": true, "show": true, "new": true, "edit": true, "update": true, "destroy": true}}
