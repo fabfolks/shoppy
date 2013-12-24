@@ -13,12 +13,90 @@ describe StocksController do
     @redirected_path = @request.env['HTTP_REFERER']
   end
 
-  describe "Guest" do
-    describe "NOT AUTORIZED/NO ROLE/NOT OWNER" do
-      it "should redirect on create" do
-        post :create, stock: { batch_no: @stock.batch_no, expiry_date: @stock.expiry_date, manufactured_date: @stock.manufactured_date, quantity: @stock.quantity, sku_code: @stock.sku_code, sku_description: @stock.sku_description, unit_of_measure: @stock.unit_of_measure, uuid: @stock.uuid }
-        response.should redirect_to @redirected_path
+  shared_examples_for Stock do
+    it "should not be able to create" do
+      expect {post :create, stock: FactoryGirl.attributes_for(:stock)}.to_not change(Stock, :count)
+      response.should redirect_to @redirected_path
+    end
+
+    it "should not be able to update" do
+      patch :update, id: @stock, stock: FactoryGirl.attributes_for(:stock, batch_no: "1234")
+      @stock.reload
+      @stock.batch_no.should_not eq("1234")
+      response.should redirect_to @redirected_path
+    end
+
+    it "should not be able to delete" do
+      expect {delete :destroy, id: @stock}.to_not change(Stock, :count)
+      response.should redirect_to @redirected_path
+    end
+
+    it "should not be able to edit" do
+      get :edit, id: @stock
+      response.should redirect_to @redirected_path
+    end
+
+    it "should be able to list" do
+      get :index
+      assigns(:stocks).should eq([@stock])
+    end
+
+    it "should be able to get" do
+      get :show, id: @stock
+      response.should be_success
+    end
+  end
+
+  describe "A guest user" do
+    context "when not logged in" do
+      it_behaves_like Stock
+    end
+
+    context "when logged in" do
+      before do
+        sign_in @user
       end
+      it_behaves_like Stock
+    end
+  end
+
+  describe "A seller" do
+    context "when logged in" do
+      before do
+        sign_in @seller
+      end
+      it "should be able to create" do
+        expect {post :create, stock: FactoryGirl.attributes_for(:stock)}.to change(Stock, :count).by(1)
+        response.should redirect_to Stock.last 
+      end
+
+      it "should be able to update" do
+        patch :update, id: @stock, stock: FactoryGirl.attributes_for(:stock, batch_no: "1234")
+        @stock.reload
+        @stock.batch_no.should eq("1234")
+        response.should redirect_to stock_path(@stock)
+      end
+
+      it "should be able to delete" do
+        expect {delete :destroy, id: @stock}.to change(Stock, :count).by(-1)
+        response.should redirect_to stocks_path
+      end
+
+      it "should be able to edit" do
+        get :edit, id: @stock
+        response.should be_success
+      end
+
+      it "should be able to list" do
+        get :index
+        assigns(:stocks).should eq([@stock])
+      end
+
+      it "should be able to get" do
+        get :show, id: @stock
+        response.should be_success
+      end
+
     end
   end
 end
