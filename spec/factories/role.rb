@@ -67,7 +67,7 @@ role_admin = {
 }
 
 FactoryGirl.define do
-  factory :role_admin class: Role do
+  factory :role_admin, class: Role do
     name        'admin'
     title       'Admin of the system'
     description 'Can do anything'
