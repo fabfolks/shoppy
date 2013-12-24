@@ -17,3 +17,4 @@
 
 #Ignore tags
 tags
+.rspec
