@@ -54,4 +54,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git', tag: 'v1.0.0'
+  gem "faker"
 end
+
+gem "uuid"

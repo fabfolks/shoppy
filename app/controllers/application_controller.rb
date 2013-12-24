@@ -13,7 +13,17 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    flash[:error] = t('the_role.access_denied')
+    flash[:error] = t('You are not authorized')
     redirect_to(:back)
+  end
+
+  def logged_in?
+    current_user
+  end
+
+  def login_required!
+    unless logged_in?
+      access_denied
+    end
   end
 end
