@@ -37,14 +37,8 @@ end
 # SELLER role
 #############################################
 role_seller = {
-  stocks: {
-  index:   true,
-  show:    true,
-  new:     true,
-  create:  true,
-  edit:    true,
-  update:  true,
-  destroy: true,
+  moderator: {
+  stocks:   true
 }
 }
 
@@ -61,8 +55,8 @@ end
 # ADMIN role
 #############################################
 role_admin = {
-  :system => {
-    :administrator => true
+  system: {
+    administrator: true
   }
 }
 
