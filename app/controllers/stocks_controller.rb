@@ -3,6 +3,7 @@ class StocksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :role_required, except: [:index, :show]
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
+  before_action :owner_required, only: [:edit, :update, :destroy]
 
   # GET /stocks
   # GET /stocks.json
@@ -65,13 +66,17 @@ class StocksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stock
-      @stock = Stock.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stock
+    @stock = Stock.find(params[:id])
+    # TheRole: You should define OWNER CHECK OBJECT
+    # When editable object was found
+    # You should define @owner_check_object before invoking **owner_required** method
+    @owner_check_object = @stock
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def stock_params
-      params.require(:stock).permit(:uuid, :sku_code, :sku_description, :batch_no, :manufactured_data, :expiry_date, :quantity, :unit_of_measure)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def stock_params
+    params.require(:stock).permit(:uuid, :sku_code, :sku_description, :batch_no, :manufactured_data, :expiry_date, :quantity, :unit_of_measure)
+  end
 end
