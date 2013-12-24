@@ -56,3 +56,21 @@ FactoryGirl.define do
     the_role     role_seller
   end
 end
+
+#############################################
+# ADMIN role
+#############################################
+role_admin = {
+  :system => {
+    :administrator => true
+  }
+}
+
+FactoryGirl.define do
+  factory :role_admin class: Role do
+    name        'admin'
+    title       'Admin of the system'
+    description 'Can do anything'
+    the_role     role_admin
+  end
+end
