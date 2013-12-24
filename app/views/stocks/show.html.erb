@@ -40,5 +40,7 @@
   <%= @stock.unit_of_measure %>
 </p>
 
-<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<% if current_user and current_user.owner?(@stock) %>
+  <%= link_to 'Edit', edit_stock_path(@stock) %> |
+<% end %>
 <%= link_to 'Back', stocks_path %>
