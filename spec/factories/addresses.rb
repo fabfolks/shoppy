@@ -6,7 +6,7 @@ FactoryGirl.define do
     state "MyString"
     district "MyString"
     street_address "MyText"
-    pincode ""
-    user_id ""
+    pincode "dasa"
+    user_id 1
   end
 end

@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :addresses, dependent: :destroy
+  accepts_nested_attributes_for :addresses, :allow_destroy => true
+
   include TheRole::User
 
   def owner?(object)

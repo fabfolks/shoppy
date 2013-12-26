@@ -58,3 +58,4 @@ group :development, :test do
 end
 
 gem "uuid"
+gem 'carmen-rails', '~> 1.0.0', github: 'jim/carmen-rails'

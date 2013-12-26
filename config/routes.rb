@@ -1,8 +1,9 @@
 Shoppy::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
   resources :stocks
 
   root "stocks#index"
+  get '/addresses/state_options' => 'addresses#state_options'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

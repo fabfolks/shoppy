@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe Address do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "create" do
+    it "should be success with valid params" do
+      expect {Address.create(FactoryGirl.attributes_for(:address))}.to change(Address, :count).by(1)
+    end
+
+    it "should faild with invalid params" do
+      expect {Address.create(FactoryGirl.attributes_for(:address, country: "", state: ""))}.to_not change(Address, :count)
+    end
+  end
 end

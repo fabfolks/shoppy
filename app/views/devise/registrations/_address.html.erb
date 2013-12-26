@@ -1,0 +1,18 @@
+<%= address_form.label :country %><br />
+<%= address_form.country_select :country, {prompt: "Please select a country"}, selected: address_form.object.country %> <br />
+
+<%= address_form.label :state %><br />
+<% if address_form.object.country.blank? %>
+  <%= address_form.select(:state, [], :prompt => "Please select a country above")%><br />
+<% else %>
+  <%= address_form.subregion_select(:state, Carmen::Country.coded(address_form.object.country), selected: address_form.object.state)%><br />
+<% end %>
+
+<%= address_form.label :district %><br />
+<%= address_form.text_field :district %> <br/>
+
+<%= address_form.label :street_address %><br />
+<%= address_form.text_area :street_address %> <br/>
+
+<%= address_form.label :pincode %><br />
+<%= address_form.text_field :pincode %> <br/>
